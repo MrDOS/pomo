@@ -33,7 +33,7 @@ def countdown(duration):
         elapsed = time.time() - start
         remaining = max(0, math.floor(duration - elapsed))
 
-        print(f'\r{remaining // 60}:{remaining % 60:02}', end='')
+        print(f'\r{remaining // 60}:{remaining % 60:02}\033[K', end='')
 
         if remaining <= 0:
             print()
