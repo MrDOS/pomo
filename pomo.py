@@ -41,14 +41,27 @@ def countdown(duration):
 
         time.sleep(min(COUNTDOWN_GRANULARITY, remaining))
 
+def numeric_pluralize(n, term, plural_suffix='s'):
+    if n == 1:
+        return term
+    else:
+        return term + plural_suffix
+
 def prompt_and_run():
+    pomodoros = 0
+    breaks = 0
+
     while True:
         choice = prompt({'1': '🍅', '2': '☕'})
 
         if choice == '1':
             do_a_pomodoro()
+            pomodoros += 1
         elif choice == '2':
             take_a_break()
+            breaks += 1
+
+        print(f"You've done {pomodoros} {numeric_pluralize(pomodoros, 'pomodoro')} and taken {breaks} {numeric_pluralize(breaks, 'break')}.")
 
 def do_a_pomodoro():
     notify("💨 Get crackin'!")
